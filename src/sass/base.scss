@@ -1,0 +1,27 @@
+p,
+ul,
+body,
+hr {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+img {
+    vertical-align: top;
+}
+
+// 主调色，洋红色
+$color: #d70057;

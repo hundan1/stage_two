@@ -81,7 +81,11 @@ const serverHandler = () => {
             host: 'localhost',
             port: 8080,
             open: './pages/index.html',
-            livereload: true
+            livereload: true,
+            proxies: [{
+                source: '/login',
+                target: 'http://127.0.0.1/login.php'
+            }]
         }))
 }
 
