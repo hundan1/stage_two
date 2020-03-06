@@ -85,6 +85,15 @@ const serverHandler = () => {
             proxies: [{
                 source: '/login',
                 target: 'http://127.0.0.1/login.php'
+            }, {
+                source: '/okbuy_index',
+                target: 'http://www.okbuy.com/ajax/homepage/index',
+            }, {
+                source: '/kaola_index',
+                target: 'https://pages.kaola.com/pages/region/detail/15075/60021/263157.html'
+            },{
+                source:'/datail_test',
+                target:'http://www.okbuy.com/ajax/detail/product_info/17827938'
             }]
         }))
 }

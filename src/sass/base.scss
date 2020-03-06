@@ -1,9 +1,34 @@
 p,
 ul,
 body,
-hr {
+hr,
+ol,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 ,
+figure,
+figurecaption{
     margin: 0;
     padding: 0;
+}
+
+b,
+i,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 400;
+    font-size: 14px;
+    font-style: normal;
+    font-family: 'Microsoft Yahei'
 }
 
 li {
@@ -17,6 +42,30 @@ a {
 .container {
     width: 1200px;
     margin: 0 auto;
+}
+
+.clearBox:after {
+    content: "清除高度塌陷";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.clearfix::after,
+.clearfix::before {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearBox {
+    zoom: 1;
 }
 
 img {

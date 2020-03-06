@@ -1,0 +1,88 @@
+@charset "UTF-8";
+.m-style {
+  position: relative;
+  text-align: center;
+  zoom:1;
+}
+
+.m-style:before,.m-style:after {
+  content: "";
+  display: table;
+  color: #003;
+}
+
+.m-style:after {
+  clear: both;
+  overflow: hidden;
+  color: #003;
+}
+
+.m-style span {
+  font-family: 'Verdana';
+  float: left;
+  margin: 0 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  color: #003;
+  font-size: 12px
+}
+
+.m-style .active {
+  float: left;
+  margin: 0 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  background: #d70057;
+  color: #fff;
+  font-size: 12px;
+}
+
+.m-style a {
+  transition: all 0.3s;
+  font-family: 'Verdana';
+  float: left;
+  margin: 0 5px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  color: #003;
+  font-size: 12px
+}
+
+.m-style a:hover {
+  color: #d70057;
+}
+
+.m-style .next,.m-style .prev {
+  width: 52px;
+  font-family: 'Verdana';
+  font-size: 12px;
+  color: #003;
+}
+
+.now,.count {
+  font-family: 'Verdana';
+  padding: 0 5px;
+  color: red;
+}
+
+.eg img {
+  max-width: 800px;
+  min-height: 500px
+}
+
+input {
+  float: left;
+  margin: 0 5px;
+  width: 38px;
+  height: 38px;
+  line-height: 38px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ebebeb;
+  outline: none;
+  color: #bdbdbd;
+  font-size: 12px
+}
