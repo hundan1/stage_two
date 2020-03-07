@@ -1,0 +1,2 @@
+数据库名称:okbuy
+表一：user (字段 ： id username password)

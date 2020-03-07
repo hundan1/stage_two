@@ -529,7 +529,7 @@ section{
         }
 
         .p_num{
-            margin-top: 16px;
+            margin-top: 2px;
             width: 719px;
             position: relative;
             height: 54px;
@@ -597,7 +597,9 @@ section{
         }
 
         .cartBtn{
+            margin-top: 8px;
             margin-left: 80px;
+            position: relative;
             input{
                 height: 50px;
                 width: 250px;
@@ -611,6 +613,43 @@ section{
                 font-family: 'Microsoft Yahei';
                 font-size: 20px;
                 border-radius: 1px;
+                outline: none;
+            }
+            span{
+                display: inline-block;
+                background-color: #bd3939;
+                position: absolute;
+                height: 24px;
+                width: 118px;
+                color: #f8f8f8;
+                font-size: 12px;
+                border-radius: 6px;
+                text-align: center;
+                line-height: 24px;
+                top: -28px;
+                left: 44px;
+                font-family: 'Microsoft Yahei';
+                opacity:0;
+                font-weight: 300;
+            }
+            .txt2{
+                left: 66px;
+                border-radius: 0px;
+                background-color: rgb(221, 28, 28);
+                color: white;
+                padding: 0 10px;
+            }
+            .txt3{
+                width: 250px;
+                height: 50px;
+                color: white;
+                background-color: rgb(152, 240, 152);
+                opacity: 0;
+                border-radius: 1px;
+                top: 0;
+                left: 0;
+                line-height: 50px;
+                display: none;
             }
         }
 

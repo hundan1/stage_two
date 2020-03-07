@@ -1,5 +1,15 @@
-// 一键置顶
+// 尺码标签选中状态
+let isSelect = false
+// 购物车列表
+let cart = JSON.parse(localStorage.getItem('cart')) || []
 
+//给数组添加个属性 totalnum 表示购物车里面的商品总数
+if(!cart.totalnum){
+    //初始化为0
+    cart.totalnum = 0
+}
+
+// 一键置顶
 $('.goTop p').click(function(){
     // console.log(this)
     clearInterval(this.timer)
@@ -110,6 +120,7 @@ $.ajax({
         $('section .right .p_size .p_right>p').html(str)
 
         $('section .right .p_size .p_right>p span').click(function(){
+            isSelect = true
             $(this)
             .addClass('active')
             .siblings()
@@ -117,3 +128,150 @@ $.ajax({
         })
     }
 })
+
+//设置数量加减按钮
+$('section .p_num .reduce')
+.click(function(){
+    if($('section .p_num input').val()>1){
+        $('section .p_num input').val($('section .p_num input').val()-1)
+    }
+})
+
+$('section .p_num .add')
+.click(function(){
+    if($('section .p_num input').val()<10){
+        $('section .p_num input').val(parseInt($('section .p_num input').val())+1)
+    }
+})
+
+//添加购物车按钮点击事件
+$('.cartBtn').click(function(){
+    if(isSelect){
+        //cart结构[{},{},{}]
+        let i = -1,j = -1
+        cart.forEach((item,index)=>{
+            if(item.id===info.id){
+                i = index
+                return
+            }
+        })
+        if(i===-1){
+            //没买过这种商品
+            let obj={
+                id : info.id,
+                name : info.name,
+                price : info.okprice,
+                sale_tag : info["sale-tag"],
+                tag_text : info["tag-text"],
+                img : info.imgA,
+                list : [{
+                    size : $('.p_size .active').text(),
+                    num : parseInt($('.p_num input').val())
+                }]
+            }
+            cart.push(obj)
+
+            cart.totalnum  += parseInt($('.p_num input').val())
+            $('header .cartBox b').text(`(${cart.totalnum})`)
+            addSuccess()
+        }else{
+            cart[i].list.forEach((item , index)=>{
+                if(item.size==$('.p_size .active').text()){
+                    j = index
+                }
+            })
+            if(j===-1){
+                //没买过这种尺码的产品
+                let obj = {
+                    size : $('.p_size .active').text(),
+                    num : parseInt($('.p_num input').val()) 
+                }
+                cart[i].list.push(obj)
+                cart.totalnum  += parseInt($('.p_num input').val())
+                $('header .cartBox b').text(`(${cart.totalnum})`)
+                addSuccess()
+            }else{
+                let t = cart[i].list[j].num + parseInt($('.p_num input').val())
+                if(t < 10){
+                    cart[i].list[j].num = t
+                    //header里的cartBox的b值
+                    cart.totalnum  += parseInt($('.p_num input').val())
+                    $('header .cartBox b').text(`(${cart.totalnum})`)
+                    //添加购物车按钮图片事件
+                    addSuccess()
+                }else{
+
+                    cart.totalnum  += (9 - cart[i].list[j].num)
+
+                    cart[i].list[j].num = 9
+                    
+                    $('header .cartBox b').text(`(${cart.totalnum})`)
+
+                    $('.cartBtn .txt2')
+                    .stop()
+                    .animate({
+                        opacity:1
+                    },300,'linear',function(){
+                        clearInterval($(this)[0].timer)
+                        $(this)[0].timer = setTimeout(function(){
+                            $('.cartBtn .txt2')
+                            .stop()
+                            .animate({
+                                opacity:0
+                            },300,'linear',function(){
+                            
+                            })
+                        },600)
+                    
+                    })
+
+
+
+                }
+            }
+        }
+
+    }else{
+        $('.cartBtn .txt1')
+        .stop()
+        .animate({
+            opacity:1
+        },300,'linear',function(){
+            clearInterval($(this)[0].timer)
+            $(this)[0].timer = setTimeout(function(){
+                $('.cartBtn .txt1')
+                .stop()
+                .animate({
+                    opacity:0
+                },300,'linear',function(){
+                   
+                })
+            },600)
+           
+        })
+    }
+})
+
+function addSuccess(){
+    $('.cartBtn input').css('visiblity','hidden')
+    $('.cartBtn .txt3').css('display','inline-block')
+    $('.cartBtn .txt3')
+        .stop()
+        .animate({
+            opacity:1
+        },300,'linear',function(){
+            clearInterval($(this)[0].timer)
+            $(this)[0].timer = setTimeout(function(){
+                $('.cartBtn .txt3')
+                .stop()
+                .animate({
+                    opacity:0
+                },300,'linear',function(){
+                    $('.cartBtn input').css('visiblity','visible')
+                    $('.cartBtn .txt3').css('display','none')
+                })
+            },800)
+        
+        })   
+}
+
